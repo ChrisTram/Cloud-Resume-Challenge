@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Display success message
             document.getElementById('response-message').innerText = result.message || 'Message sent successfully!';
+            disableForm(form);
         } catch (error) {
             console.error("Error:", error);
             document.getElementById('response-message').innerText = 'Failed to send message.';
@@ -60,4 +61,13 @@ async function updateCounter(counter) {
             counter.innerHTML = "Error fetching data.";
         }
     }
+}
+
+
+function disableForm(form) {
+    // Disable all input elements in the form
+    const inputs = form.querySelectorAll('input, textarea, button');
+    inputs.forEach(input => {
+        input.disabled = true;
+    });
 }
