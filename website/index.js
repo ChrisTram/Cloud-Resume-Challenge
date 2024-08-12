@@ -4,9 +4,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 async function updateCounter(counter) {
-    let response = await fetch("https://72sp4ycyn62u2rivmlg764dpi40aprvh.lambda-url.eu-central-1.on.aws/");
-    let data = await response.json();
-    if (counter) {
-        counter.innerHTML = `Number of Views: ${data}`;
+    try {
+
+        let response = await fetch("https://e33a82xy31.execute-api.eu-central-1.amazonaws.com/Prod/count");
+        let data = await response.json();
+        if (counter) {
+            counter.innerHTML = `Number of Views: ${data}`;
+        } else {
+            console.error("Unexpected data format:", data);
+            counter.innerHTML = "Error fetching data.";
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        if (counter) {
+            counter.innerHTML = "Error fetching data.";
+        }
     }
 }
