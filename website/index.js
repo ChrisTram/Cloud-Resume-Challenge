@@ -14,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
             message: formData.get('message')
         };
 
-        console.log(data)
-
         try {
             // Send data to API Gateway
             let response = await fetch("https://e33a82xy31.execute-api.eu-central-1.amazonaws.com/Prod/contact", {
